@@ -1,0 +1,4 @@
+0	peer
+10	underling
+20	overseer
+
