@@ -14,6 +14,21 @@ button {
   margin: 0;
 }
 
+#form_wrap {
+  max-width: 900px;
+  min-width: 600px;
+  margin-top: 1em;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0.5em;
+  background-color: #FBF9EF;
+}
+
+#form_display {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 #display {
   margin-left: auto;
   margin-right: auto;
