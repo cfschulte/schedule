@@ -2,3 +2,62 @@
 // _buttons.scss:  Wed Aug 28 13:12:50 CDT 2019
 // 
 
+@mixin base_button($font_size) {
+   font-size:$font_size;
+   font-weight:bolder;
+   text-align:center;
+   padding: 2px 0.5em ;
+   border: 1px solid #ddd; 
+   border-radius: 3px;
+}
+
+
+
+.a_button {
+   @include base_button($default-button-fontsize);
+   margin-top:1.5em;
+   margin-right:3em;
+}
+
+
+/* disable a "link" button */
+.a_button_disabled {
+   @include base_button($default-button-fontsize);
+    color: #000;
+    background-color: #e8e4d8;
+    color:#333366;
+
+    margin-top:1.5em;
+    margin-right:3em;
+    
+    cursor: not-allowed;
+    pointer-events: none;
+    display:block;
+    text-decoration:none; 
+}
+
+
+button.a_button{
+    color:#333366;
+	background-color:#99C8D3;
+}
+
+button.a_button:hover{
+    color: #000;
+    background-color: #e8e4d8;
+}
+
+a.a_button:link, a.a_button:visited, a.a_button:active {
+    color:#333366;
+    background-color: #DBE1DA;
+    display:block;
+    text-decoration:none; 
+}
+
+
+a.a_button:hover {
+    color: #000;
+    background-color: #e8e4d8;
+    display:block;
+    text-decoration:none; 
+}

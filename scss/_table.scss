@@ -2,3 +2,15 @@
 // _table.scss:  Wed Aug 28 13:04:14 CDT 2019
 // 
 
+
+.default_table {
+    width: $full_size;
+    font-size: $smaller;
+    border-bottom: 1px #333 solid;
+    border-left:  1px #333 solid;
+//    border-right:  1px #333 solid;
+}
+
+.odd_row {
+    background-color:$highlight-color;
+}

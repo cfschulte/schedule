@@ -1,4 +1,15 @@
 // 
 // style.scss:  Wed Aug 28 14:07:21 CDT 2019
 // 
+@charset 'utf-8';
+
+//  sass --no-source-map style.scss ../css/style.css
+
+@import "vars";
+@import "reset";
+@import "layout";
+@import "buttons";
+@import "header";
+@import "table";
+@import "footer";
 

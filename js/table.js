@@ -4,3 +4,7 @@
 
 *************/
 
+
+$(document).ready(function()) {
+    $('table.default_table tr:visible:odd').addClass('odd_row');
+}

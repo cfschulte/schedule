@@ -2,3 +2,13 @@
 // _layout.scss:  Wed Aug 28 14:09:34 CDT 2019
 // 
 
+
+#display {
+    margin-left: auto;
+    margin-right: auto;
+    width: $smaller;
+    position: relative;
+    padding:1.5em;
+    overflow-x: scroll;
+    overflow-y: scroll;
+}

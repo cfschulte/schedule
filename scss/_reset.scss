@@ -2,3 +2,20 @@
 // _reset.scss:  Wed Aug 28 13:04:56 CDT 2019
 // 
 
+
+html, body {
+    font-family: $verlag-font;
+    background-color: $main-background-color;
+    width:100%;
+    height:100%;
+}
+
+
+h1 {
+    padding-left:1em;
+}
+
+button {
+    padding: 0;
+    margin: 0;
+}
