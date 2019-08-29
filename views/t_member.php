@@ -19,12 +19,14 @@ class member_table extends table_element {
         } else {
             echo '<tr>';
         }
+        
+        $id = $row[$this->primary_key];
 
         while ( list($key, $datum) = each($row) ) {
            if(!array_key_exists($key, $this->columns_to_show)){
                 continue;
            } elseif($key == 'member_id'){
-                $this->linked_cell($datum);
+                $this->linked_cell($datum, $id);
            }else {
                 $this->table_cell($key, $datum);
            }
@@ -35,8 +37,8 @@ class member_table extends table_element {
     
  /*************************************************************************/  
    // table_row  
-    function linked_cell($datum) {
-       echo '<td class="link_button"><a  href="/schedule/views/form_member?id=' . $datum . '">' . $datum . '</a></td>';
+    function linked_cell($datum, $id) {
+       echo '<td class="link_button"><a  href="/schedule/views/form_member?id=' . $id . '">' . $datum . '</a></td>';
     }
 }
 
