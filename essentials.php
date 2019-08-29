@@ -3,10 +3,10 @@
 // 
 
 $root = $_SERVER['DOCUMENT_ROOT'] ;
-set_include_path($root . '/staff_and_bosses/:'  . 
-                 $root . '/staff_and_bosses/base_classes:' .
-                 $root . '/staff_and_bosses/models:' .
-                 $root . '/staff_and_bosses/views');
+set_include_path($root . '/schedule/:'  . 
+                 $root . '/schedule/base_classes:' .
+                 $root . '/schedule/models:' .
+                 $root . '/schedule/views');
 
 // access the database.
 require_once "db_class.php";

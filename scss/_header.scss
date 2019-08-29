@@ -3,12 +3,25 @@
 // 
 
 .page_header{
-	border-bottom: 10px $big_margin_color solid;
-	width:100%;
+	padding-top: 0px;
+	padding-top: 3px;
+	padding-left: 2em;
+// 	padding-bottom: 6px;
+// 	margin-top: -15px;
+	margin-top: 0px;
+	margin-left: -4px;
+	width:105%;
 	height: 3em;
+	border-bottom: 10px $big_margin_color solid;
+ 	vertical-align:center;
 	background-color:$header_bg_color;
 	z-index: 10;
 	opacity: 1.0;
 
-	position: fixed;
+// 	position: fixed;
 } 
+
+h1 {
+    padding-left:1em;
+    margin-bottom: 0.5em;
+}

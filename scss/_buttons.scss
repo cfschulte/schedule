@@ -2,6 +2,12 @@
 // _buttons.scss:  Wed Aug 28 13:12:50 CDT 2019
 // 
 
+
+// button {
+//     padding: 0;
+//     margin: 0;
+// }
+
 @mixin base_button($font_size) {
    font-size:$font_size;
    font-weight:bolder;

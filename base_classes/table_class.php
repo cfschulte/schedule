@@ -1,7 +1,7 @@
 <?php
 // table_class.php -  Wed Aug 28 11:35:34 CDT 2019
 // I've been using a table_class in a lot of my other web 
-// applications. I'm taking one from build_lab_inventory, 
+// applications. I'm taking one from schedule, 
 // going through it, cleaning it up, and creating an essential
 // table view.
 //
@@ -86,14 +86,14 @@ class table_class {
  // and then augmented.
     function jscript_list() {
   // we might want this later:
-  //     <script type="text/javascript" src="/build_lab_inventory/js/jquery.tablesorter.js"></script>
+  //     <script type="text/javascript" src="/schedule/js/jquery.tablesorter.js"></script>
 
 
 ?>
     <script type="text/javascript" src="/jquery/jquery.js"></script>
     <script type="text/javascript" src="/jquery/jquery-ui/jquery-ui.min.js"></script>
     <script type="text/javascript" src="/jquery/jquery.tablesorter.min.js"></script>
-    <script type="text/javascript" src="/build_lab_inventory/js/tables.js"></script>
+    <script type="text/javascript" src="/schedule/js/table.js"></script>
 <?php 
     }
     
@@ -102,7 +102,7 @@ class table_class {
  // and then augmented.
     function css_list() {
 ?>
-    <link rel="Stylesheet" type="text/css" href="/build_lab_inventory/css/style.css" />
+    <link rel="Stylesheet" type="text/css" href="/schedule/css/style.css" />
     <link rel="Stylesheet" type="text/css" href="/jquery/jquery-ui/jquery-ui.min.css" />
 
 <?php 
@@ -159,11 +159,7 @@ class table_class {
    // create_table -- each of the called functions can be overridden.
    function create_table() {
       if($this->table_name == '') { return; }
-      
-      if($this->post_action == 'add') {
-         $this->addDBRow();
-      }
-      
+            
        $this->table_declaration();
        $this->table_head();
        $this->table_body();
@@ -203,18 +199,6 @@ class table_class {
     }
 
 
- /*************************************************************************/  
-   // table_body
-   function table_body() {
-        $db_table =$this->getDBTable();
-        
-        echo "<tbody>\n";
-        foreach( $db_table as $row ) {
-            $this->table_row($row);
-        }
-        echo "</tbody>\n";
-    }
-
 
  /*************************************************************************/  
    // table_row  -- This is where most of the overriding should happen. 
@@ -222,7 +206,9 @@ class table_class {
         $primary = $row[$this->primary_key];
         echo '<tr>';
         while ( list($key, $datum) = each($row) ) {
-           if($key == $this->title_column) {
+           if($key == $this->primary_key){
+                continue;
+           }elseif($key == $this->title_column) {
                 $this->table_cell_primary($key, $datum, $primary);
            } else {
                 $this->table_cell($key, $datum);

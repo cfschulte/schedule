@@ -17,6 +17,8 @@ GRANT  ALL ON schedule.*   TO 'schedule_admin'@'localhost';
 GRANT  ALL ON schedule.*   TO 'schedule_admin'@'%';
 
 -- INSERT INTO member (authority,member_id,last_name,first_name,email) VALUES (10, "stopher","Schulte","Christopher","cfschulte@humonc.wisc.edu");
+-- INSERT INTO member (authority,member_id,last_name,first_name,email) VALUES (10, "nprew","Rew","Natalie","natalierew@gmail.com");
+-- INSERT INTO member (authority,member_id,last_name,first_name,email) VALUES (1, "schultz","Schultz","Mathew","schultz@humonc.wisc.edu");
 
 -- 
 -- member - 

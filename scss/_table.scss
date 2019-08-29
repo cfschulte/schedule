@@ -4,11 +4,14 @@
 
 
 .default_table {
-    width: $full_size;
+    width: $smaller;
     font-size: $smaller;
-    border-bottom: 1px #333 solid;
-    border-left:  1px #333 solid;
 //    border-right:  1px #333 solid;
+}
+
+.default_table td {
+    border-bottom: 1px #333 solid;
+    border-right:  1px #333 solid;
 }
 
 .odd_row {

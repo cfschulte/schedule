@@ -1,7 +1,7 @@
 <?php
 // form_class.php -  Wed Aug 28 15:08:11 CDT 2019
 //  This was mostly taken for the treatment project, which was based 
-//  on the build_lab_inventory project. 
+//  on the schedule project. 
 
 require_once "../essentials.php";
 
@@ -9,9 +9,11 @@ require_once "../essentials.php";
 class form_class {
     protected $title;
     protected $table_title;
+    protected $table_display;
     protected $member_id;
     protected $member_priveleges;
     protected $is_new;
+    protected $form_data = array();
     
  /*************************************************************************/   
     function __construct( $table_title='', $primary_key = 'id', $table_display='table_class.php') {
@@ -81,7 +83,7 @@ class form_class {
     function jscript_list() {
 ?>
     <script type="text/javascript" src="/jquery/jquery.js"></script>
-    <script type="text/javascript" src="/schedule/js/forms.js"></script>  
+    <script type="text/javascript" src="/schedule/js/form.js"></script>  
 
 <?php 
     }
@@ -119,12 +121,14 @@ class form_class {
    // page_header
    function page_header() {
 ?>
+<div class="page_header">
 <div class="in_header">
  <h1><?php echo $this->title; ?></h1>
 
 <?php 
     $this->additionalHeaderStuff();
 ?>
+ </div>
  </div>
  <div style="clear:both;"></div>
  <?php 
@@ -190,6 +194,10 @@ class form_class {
             $this->is_find_form = 1;
             $this->title = 'Find in ' . $this->table_title;
         }
+        if(array_key_exists('id', $indata)){
+            $this->id = $indata['id'];
+            $this->form_data = $this->fetchRecordInfo($this->id);
+        }
    }
     
     
@@ -249,7 +257,7 @@ class form_class {
   
  /*************************************************************************/  
    // set initial variables with 
-   function fetchRecordInfo($key, $identifier) {
+   function fetchRecordInfo($identifier) {
         $db_obj = new db_class();
         $primary_key = $db_obj->getPrimaryKey($this->table_title);
         $sql = 'SELECT * FROM ' . $this->table_title . ' WHERE ' . $primary_key . '=?';
