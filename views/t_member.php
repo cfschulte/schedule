@@ -38,7 +38,7 @@ class member_table extends table_element {
  /*************************************************************************/  
    // table_row  
     function linked_cell($datum, $id) {
-       echo '<td class="link_button"><a  href="/schedule/views/form_member?id=' . $id . '">' . $datum . '</a></td>';
+       echo '<td class="link_button"><a  href="/schedule/views/f_member?id=' . $id . '">' . $datum . '</a></td>';
     }
 }
 
@@ -56,7 +56,7 @@ class t_member extends view_class {
  // The load the javascripts -- it can be called from the child classes 
  // and then augmented.
     function jscript_list() {
-    parent::jscript_list();
+        parent::jscript_list();
 ?>
     <script type="text/javascript" src="/jquery/jquery.tablesorter.min.js"></script>
     <script type="text/javascript" src="/schedule/js/table.js"></script>

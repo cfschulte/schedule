@@ -39,14 +39,10 @@ class view_class {
 ?>
 <!DOCTYPE html>
 <html>
-         <?php $this->header(); ?>
-         <?php 
-             if(! $this->problem_with_page ) { 
-                $this->body(); 
-             } else  {
-                $this->warnUser();
-             }
-         ?>
+    <?php 
+        $this->header(); 
+        $this->body(); 
+    ?>
 </html>
 <?php 
     } /*** end execute **/
@@ -87,7 +83,7 @@ class view_class {
  // NOTE: we will probably want a print.css 
     function css_list() {
 ?>
-<link rel="Stylesheet" type="text/css" href="/schedule/css/style.css" />    
+    <link rel="Stylesheet" type="text/css" href="/schedule/css/style.css" />    
     <link rel="Stylesheet" type="text/css" href="/jquery/jquery-ui/jquery-ui.min.css" />
 
 <?php 
