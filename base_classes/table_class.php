@@ -143,6 +143,7 @@ class table_class {
  <div style="clear:both;"></div>
 <?php 
      include "../menu.php";
+</div>
    }
 
  /*************************************************************************/  

@@ -21,8 +21,12 @@
 
 <div class="display">
   <h2>Available tables</h2>
-  <p><a href="views/table_member.php">Members</a></p>
+  <p><a href="views/t_member.php">Members</a></p>
 </div>
+
+
+
+
  <div id="footer">
     <p>Department of Human Oncology, UW Medical School, 600 Highland Ave., Madison, WI 53792</p>
     <p><a href="http://www.med.wisc.edu/">University of Wisconsin School of Medicine and Public Health</a></p>

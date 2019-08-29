@@ -24,7 +24,6 @@ class form_class {
         $this->table_display = $table_display;
         $this->primary_key = $primary_key;
         
-        $this->is_new = 0;
     }
 
  /*************************************************************************/  

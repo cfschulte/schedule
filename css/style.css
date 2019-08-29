@@ -37,7 +37,6 @@ body {
   margin-right: auto;
   width: 80%;
   position: relative;
-  padding: 1.5em;
   overflow-x: scroll;
   overflow-y: scroll;
 }
@@ -119,6 +118,18 @@ h1 {
 .default_table {
   width: 80%;
   font-size: 80%;
+}
+
+.default_table th {
+  height: 1.5em;
+}
+
+.default_table tr {
+  height: 1em;
+}
+
+.default_table td {
+  padding-left: 0.5em;
 }
 
 .default_table td {

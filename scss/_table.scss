@@ -4,9 +4,21 @@
 
 
 .default_table {
-    width: $smaller;
+    width: $width-90;
     font-size: $smaller;
 //    border-right:  1px #333 solid;
+}
+
+.default_table th {
+    height: 1.5em;
+}
+
+.default_table tr {
+    height: 1em;
+}
+
+.default_table td {
+    padding-left: 0.5em;
 }
 
 .default_table td {
