@@ -73,4 +73,49 @@ class form_element {
         $this->form_data = $db_table[0];
    }
 
+
+ /*************************************************************************/  
+    //  echo a select input directly to the output 
+    function buildGenericSelect($tablename, $form_name, $id_name, $label_name, $current_choice=0, $disabled=0) {
+        $pulldownList = $this->getPulldownList($tablename, $id_name, $label_name);
+
+        echo '<select id="' . $form_name . '" name="' . $form_name . '" >';
+        if($disabled) {
+           echo ' disabled '; 
+        }
+        echo '>' . "\n";
+    
+        foreach($pulldownList as $choice) {
+            echo '<option value="' . $choice[$id_name] . '" ';  
+            $this->setSelection($choice[$id_name], $current_choice);
+            echo '>' . $choice[$label_name] . '</option>' . "\n";
+        }
+        echo "</select>\n";
+    }
+
+
+    // //////////////////////
+    function getPulldownList($tablename, $id_name, $label_name) {
+         $sql = "SELECT $id_name, $label_name FROM  $tablename";
+        
+        $db_obj = new db_class();
+        $db_table = $db_obj->getTableNoParams($sql);
+        $db_obj->closeDB();
+        return     $db_table;
+    }
+
+    // //////////////////////
+    // Used to set the correct option in a select input.
+    //  Does nothing if the option is not selected 
+    function setSelection($option, $status) {
+        echo ($option == $status)? 'selected': '';
+    }
+
+    // //////////////////////
+    // Used to set the correct option in a select input.
+    //  Does nothing if the option is not selected 
+    function setSelectionBuffer($option, $status) {
+        return ($option == $status)? 'selected': '';
+    }
+    
 }

@@ -121,7 +121,7 @@ class view_class {
  <div style="clear:both;"></div>
  <?php 
  // we'll figure this ot 
-    include "../menu.php"; 
+//     include "../menu.php"; 
  ?>
 <?php 
    }

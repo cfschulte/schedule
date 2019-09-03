@@ -4,7 +4,7 @@
 
 require_once "../essentials.php";
 require_once "view_class.php";
-require_once "form_element.php";
+require_once "fe_member.php";
 
 
 
@@ -57,7 +57,7 @@ class f_member extends view_class {
             $this->is_new = 1;
         } else {
             $this->id = $indata['id'];
-            $this->member_form = new form_element(0, array('table' => 'member', 'id' => $this->id));
+            $this->member_form = new fe_member(0, array('table' => 'member', 'id' => $this->id));
             
             $this->title = "Member " . $this->member_form->get_value_by_column('first_name') . ' ' . $this->member_form->get_value_by_column('last_name');
         }
