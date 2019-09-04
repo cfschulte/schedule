@@ -45,7 +45,6 @@ class f_member extends view_class {
 <input type="hidden" id="table_name" value="member" >
 <div id="wrapper">  
   <?php 
-  showDebug('execute');
   $this->member_form->execute() 
   ?>
 </div>
@@ -60,8 +59,6 @@ class f_member extends view_class {
             $this->is_new = 1;
         } else {
             $this->id = $indata['id'];
-            showDebug('New fe_member');
-            showDebug($this->user_privileges);
             $this->member_form = new fe_member(0, $this->user_privileges,  array('table' => 'member', 'id' => $this->id));
             
             $this->title = "Member " . $this->member_form->get_value_by_column('first_name') . ' ' . $this->member_form->get_value_by_column('last_name');

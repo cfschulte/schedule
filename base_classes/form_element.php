@@ -16,10 +16,9 @@ class form_element {
     
     
  /*************************************************************************/   
-    function __construct($is_new, $user_privileges, $in_parameters = []) {
+    function __construct($is_new, $user_priveleges, $in_parameters = []) {
         $this->is_new = $is_new;
         $this->user_privileges = $user_privileges;
-        showDebug( 'form_element '. $this->user_privileges);
         $this->in_parameters = $in_parameters;
         $this->fill_form_data();
     }
@@ -82,18 +81,18 @@ class form_element {
     // For this, I'm going to assume that the table of standard titles (pulldown)
     // is going to have an id and a description. 
     function buildGenericSelect($lookup_table, $form_name, $current_choice=0, $disabled=0) {
-        $pulldownList = $this->getPulldownList($lookup_table, $id_name, $label_name);
+        $pulldownList = $this->getPulldownList($lookup_table);
 
         echo '<select id="' . $form_name . '" name="' . $form_name . '" >';
         if($disabled) {
            echo ' disabled '; 
         }
         echo '>' . "\n";
-    
+        echo "<option></option>\n";
         foreach($pulldownList as $choice) {
             echo '<option value="' . $choice['id'] . '" ';  
-            $this->setSelection($choice[$id_name], $current_choice);
-            echo '>' . $choice[$label_name] . '</option>' . "\n";
+            $this->setSelection($choice['id'], $current_choice);
+            echo '>' . $choice['description'] . '</option>' . "\n";
         }
         echo "</select>\n";
     }
@@ -106,6 +105,7 @@ class form_element {
         $db_obj = new db_class();
         $db_table = $db_obj->getTableNoParams($sql);
         $db_obj->closeDB();
+        
         return     $db_table;
     }
 

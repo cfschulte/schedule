@@ -47,8 +47,8 @@ CREATE TABLE `backup_table` (
 DROP TABLE IF EXISTS `member`;
 CREATE TABLE `member` (
   `id`                INT NOT NULL AUTO_INCREMENT,
-  `authority`         INT DEFAULT 0,
-  `user_id`         VARCHAR(16) NOT NULL,
+  `authority`         INT DEFAULT NULL,
+  `member_id`           VARCHAR(16) NOT NULL,
   `last_name`         VARCHAR(32) DEFAULT NULL,
   `other_names`       VARCHAR(128) DEFAULT NULL,
   `first_name`        VARCHAR(32) DEFAULT NULL,

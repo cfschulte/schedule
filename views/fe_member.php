@@ -8,9 +8,8 @@ require_once "form_element.php";
 
 class fe_member extends form_element {
     function __construct($is_new, $user_priveleges, $in_parameters = []) {
-        showDebug('fe_member ' .  $user_priveleges);
-        showArray($in_parameters);
-        parent::__construct($is_new, $user_privileges, $in_parameters);
+        $this->user_priveleges = $user_priveleges;
+        parent::__construct($is_new, $user_priveleges, $in_parameters);
     }
     
  /*************************************************************************/  
@@ -55,8 +54,12 @@ class fe_member extends form_element {
 <div class="flex_item">
     <label for="authority" class="basic_label">Role</label>
 <?php
-showDebug($this->user_privileges);
-    $this->buildGenericSelect("authority", "authority", $this->form_data['authority']);
+    if($this->user_priveleges > 5){
+        $this->buildGenericSelect("authority", "authority", $this->form_data['authority']);
+    } else {
+        $role = $this->getRole($this->form_data['authority']);
+        echo "<b>$role</b>";
+    }
 ?>
 </div>
 </div>    
@@ -90,6 +93,18 @@ showDebug($this->user_privileges);
     </form>
     </div>
         <?php
+    }
+    
+    
+ /*************************************************************************/  
+   // 
+    function getRole($authority){
+        $sql = 'SELECT description FROM authority WHERE id=?';
+        $db_obj = new db_class();
+        $db_table = $db_obj->simpleOneParamRequest($sql, 'i', $authority);
+        $db_obj->closeDB();
+        
+        return $db_table[0];
     }
 }
 
