@@ -4,8 +4,9 @@
 
 
 #form_wrap {
-    max-width: 900px;
-    min-width: 600px;
+    max-width: 800px;
+    min-width: 400px;
+//     width: minmax(400px,60%);
     margin-top: 1em;
     margin-left: auto;
     margin-right: auto;

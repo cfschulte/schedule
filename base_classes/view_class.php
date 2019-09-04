@@ -9,8 +9,8 @@ require_once "../essentials.php";
 
 class view_class {
     protected $title;
-    protected $member_id;
-    protected $member_priveleges;
+    protected $user_id;
+    protected $user_priveleges;
     protected $is_new;
 
     
@@ -26,8 +26,8 @@ class view_class {
  // Execute the page.  
     function execute() {
         $userInfo = check_login(); // put this into this class?
-        $this->member_id = $userInfo['member_id'];
-        $this->member_privilges = $userInfo['authority'];
+        $this->user_id = $userInfo['user_id'];
+        $this->user_privileges = $userInfo['authority'];
 
         if(!empty($_POST) ) {
             $this->handle_post($_POST);

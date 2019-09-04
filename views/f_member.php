@@ -19,8 +19,8 @@ class f_member extends view_class {
     
 
     function __construct() {
-        $this->handle_get($_GET);
         parent::__construct($this->title);
+//         $this->handle_get($_GET);
     }
 
 
@@ -44,7 +44,10 @@ class f_member extends view_class {
    ?>
 <input type="hidden" id="table_name" value="member" >
 <div id="wrapper">  
-  <?php $this->member_form->execute() ?>
+  <?php 
+  showDebug('execute');
+  $this->member_form->execute() 
+  ?>
 </div>
    <?php
    
@@ -57,7 +60,9 @@ class f_member extends view_class {
             $this->is_new = 1;
         } else {
             $this->id = $indata['id'];
-            $this->member_form = new fe_member(0, array('table' => 'member', 'id' => $this->id));
+            showDebug('New fe_member');
+            showDebug($this->user_privileges);
+            $this->member_form = new fe_member(0, $this->user_privileges,  array('table' => 'member', 'id' => $this->id));
             
             $this->title = "Member " . $this->member_form->get_value_by_column('first_name') . ' ' . $this->member_form->get_value_by_column('last_name');
         }

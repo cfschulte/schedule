@@ -8,8 +8,8 @@ require_once "table_class.php";
 
 class table_member extends table_class {
     function __construct() {
-        parent::__construct('Members',  'member', 'form_member.php', 'member_id',
-          array('member_id' => 'ID', 'first_name' =>'First', 'last_name' => 'Last', 
+        parent::__construct('Members',  'member', 'form_member.php', 'user_id',
+          array('user_id' => 'ID', 'first_name' =>'First', 'last_name' => 'Last', 
           'email' => 'Email'));
     }
 }

@@ -11,12 +11,15 @@ require_once "../essentials.php";
 class form_element {
     protected $is_new = 0;
     protected $in_parameters;
+    protected $user_priveleges; // need this to show/hide things - get it from
     protected $form_data;
     
     
  /*************************************************************************/   
-    function __construct($is_new, $in_parameters = []) {
+    function __construct($is_new, $user_privileges, $in_parameters = []) {
         $this->is_new = $is_new;
+        $this->user_privileges = $user_privileges;
+        showDebug( 'form_element '. $this->user_privileges);
         $this->in_parameters = $in_parameters;
         $this->fill_form_data();
     }
@@ -76,8 +79,10 @@ class form_element {
 
  /*************************************************************************/  
     //  echo a select input directly to the output 
-    function buildGenericSelect($tablename, $form_name, $id_name, $label_name, $current_choice=0, $disabled=0) {
-        $pulldownList = $this->getPulldownList($tablename, $id_name, $label_name);
+    // For this, I'm going to assume that the table of standard titles (pulldown)
+    // is going to have an id and a description. 
+    function buildGenericSelect($lookup_table, $form_name, $current_choice=0, $disabled=0) {
+        $pulldownList = $this->getPulldownList($lookup_table, $id_name, $label_name);
 
         echo '<select id="' . $form_name . '" name="' . $form_name . '" >';
         if($disabled) {
@@ -86,7 +91,7 @@ class form_element {
         echo '>' . "\n";
     
         foreach($pulldownList as $choice) {
-            echo '<option value="' . $choice[$id_name] . '" ';  
+            echo '<option value="' . $choice['id'] . '" ';  
             $this->setSelection($choice[$id_name], $current_choice);
             echo '>' . $choice[$label_name] . '</option>' . "\n";
         }
@@ -95,8 +100,8 @@ class form_element {
 
 
     // //////////////////////
-    function getPulldownList($tablename, $id_name, $label_name) {
-         $sql = "SELECT $id_name, $label_name FROM  $tablename";
+    function getPulldownList($lookup_table) {
+         $sql = "SELECT id, description FROM  $lookup_table";
         
         $db_obj = new db_class();
         $db_table = $db_obj->getTableNoParams($sql);

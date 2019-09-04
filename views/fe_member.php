@@ -7,8 +7,10 @@ require_once "../essentials.php";
 require_once "form_element.php";
 
 class fe_member extends form_element {
-    function __construct($is_new, $in_parameters = []) {
-        parent::__construct($is_new, $in_parameters);
+    function __construct($is_new, $user_priveleges, $in_parameters = []) {
+        showDebug('fe_member ' .  $user_priveleges);
+        showArray($in_parameters);
+        parent::__construct($is_new, $user_privileges, $in_parameters);
     }
     
  /*************************************************************************/  
@@ -22,8 +24,10 @@ class fe_member extends form_element {
 //         showArray($this->form_data);
         
     ?>
-    <form method="POST" class="member_form">
-    <input type="hidden" name="id" id="id" value="<?php echo $this->form_data['id'] ?>">
+    <form method="POST" class="ajax_form">
+    <input type="hidden" name="is_new" value="<?php echo $this->is_new ?>">
+    <input type="hidden" name="id" value="<?php echo $this->form_data['id'] ?>">
+    <input type="hidden" name="table" value="member">
 <div class="flex_container">   
    
 <div class="flex_item">
@@ -44,14 +48,15 @@ class fe_member extends form_element {
 <div class="flex_container">  
     
 <div class="flex_item">
-    <label for="member_id" class="basic_label">Member ID</label>
+    <label for="user_id" class="basic_label">Member ID</label>
     <input class="" type="text" name="member_id" id="member_id" value="<?php echo $this->form_data['member_id'] ?>">
 </div>
 
 <div class="flex_item">
     <label for="authority" class="basic_label">Role</label>
 <?php
-    $this->buildGenericSelect("authority", "authority", "id", "description", $this->form_data['authority']);
+showDebug($this->user_privileges);
+    $this->buildGenericSelect("authority", "authority", $this->form_data['authority']);
 ?>
 </div>
 </div>    
@@ -73,7 +78,7 @@ class fe_member extends form_element {
     <label for="city" class="basic_label">City</label>
     <input class="" type="text" name="city" id="city" value="<?php echo $this->form_data['city'] ?>"><br>
     
-    <label for="state_provence" class="basic_label">State</label>
+    <label for="state_provence" class="basic_label">State/Prov</label>
     <input class="" type="text" name="state_provence" id="state_provence" value="<?php echo $this->form_data['state_provence'] ?>"><br>
     
     <label for="zipcode" class="basic_label">Zipcode</label>
