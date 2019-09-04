@@ -24,34 +24,49 @@ class fe_member extends form_element {
     ?>
     <form method="POST" class="member_form">
     <input type="hidden" name="id" id="id" value="<?php echo $this->form_data['id'] ?>">
-<div>    
+<div class="flex_container">   
+   
+<div class="flex_item">
     <label for="first_name" class="basic_label">First name</label>
     <input class="" type="text" name="first_name" id="first_name" value="<?php echo $this->form_data['first_name'] ?>">
+</div>
     
+<div class="flex_item">
     <label for="other_names" class="basic_label">Middle</label>
     <input class="" type="text" name="other_names" id="other_names" value="<?php echo $this->form_data['other_names'] ?>">
+</div>
     
+<div class="flex_item">
     <label for="last_name" class="basic_label">Last name</label>
     <input class="" type="text" name="last_name" id="last_name" value="<?php echo $this->form_data['last_name'] ?>">
+</div>
 </div> 
-<div>   
+<div class="flex_container">  
     
+<div class="flex_item">
     <label for="member_id" class="basic_label">Member ID</label>
     <input class="" type="text" name="member_id" id="member_id" value="<?php echo $this->form_data['member_id'] ?>">
+</div>
 
+<div class="flex_item">
     <label for="authority" class="basic_label">Role</label>
 <?php
     $this->buildGenericSelect("authority", "authority", "id", "description", $this->form_data['authority']);
 ?>
+</div>
 </div>    
-<div>   
+<div class="flex_container">  
+<div class="flex_item">
     <label for="phone" class="basic_label">Phone</label>
     <input class="" type="text" name="phone" id="phone" value="<?php echo $this->form_data['phone'] ?>">
+</div>
     
+<div class="flex_item">
     <label for="email" class="basic_label">Email</label>
     <input class="" type="text" size="35" name="email" id="email" value="<?php echo $this->form_data['email'] ?>">
+</div>
 </div>  
-<div>  
+<div class="address">  
     <label for="address" class="basic_label">Address</label>
     <input class="" type="text" name="address" id="address" value="<?php echo $this->form_data['address'] ?>"><br>
     
