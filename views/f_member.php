@@ -4,7 +4,7 @@
 
 require_once "../essentials.php";
 require_once "view_class.php";
-require_once "form_element.php";
+require_once "fe_member.php";
 
 ////////////////////////////////////////
 // EXTEND form_element
@@ -25,8 +25,8 @@ class f_member extends view_class {
     
 
     function __construct() {
-        $this->handle_get($_GET);
         parent::__construct($this->title);
+//         $this->handle_get($_GET);
     }
 
 
@@ -50,7 +50,9 @@ class f_member extends view_class {
    ?>
 <input type="hidden" id="table_name" value="member" >
 <div id="wrapper">  
-  <?php $this->member_form->execute() ?>
+  <?php 
+  $this->member_form->execute() 
+  ?>
 </div>
    <?php
    
@@ -63,7 +65,7 @@ class f_member extends view_class {
             $this->is_new = 1;
         } else {
             $this->id = $indata['id'];
-            $this->member_form = new form_element(0, array('table' => 'member', 'id' => $this->id));
+            $this->member_form = new fe_member(0, $this->user_privileges,  array('table' => 'member', 'id' => $this->id));
             
             $this->title = "Member " . $this->member_form->get_value_by_column('first_name') . ' ' . $this->member_form->get_value_by_column('last_name');
         }

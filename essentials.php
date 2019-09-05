@@ -39,7 +39,7 @@ function dump($value) {
 // We will figure this one out. There are a number of
 // ways to do this.
 function check_login() {
-    return array('member_id' => 'stopher', 'authority' => 10);
+    return array('user_id' => 'stopher', 'authority' => 10);
 }
 
 

@@ -10,7 +10,7 @@ class form_class {
     protected $title;
     protected $table_title;
     protected $table_display;
-    protected $member_id;
+    protected $user_id;
     protected $member_priveleges;
     protected $is_new;
     protected $form_data = array();
@@ -30,8 +30,8 @@ class form_class {
  // Execute the page.  
     function execute() {
         $userInfo = check_login();
-        $this->member_id = $userInfo['member_id'];
-        $this->member_privilges = $userInfo['authority'];
+        $this->user_id = $userInfo['user_id'];
+        $this->user_privileges = $userInfo['authority'];
 
         
         if(!empty($_POST) ) {

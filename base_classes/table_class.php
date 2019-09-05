@@ -42,8 +42,8 @@ class table_class {
  // 
     function execute(){
         $userInfo = check_login();
-        $this->member_id = $userInfo['member_id'];
-        $this->member_privilges = $userInfo['authority'];
+        $this->user_id = $userInfo['user_id'];
+        $this->user_privileges = $userInfo['authority'];
         
         // We will use post or get to filter the lists.
         // I want to revamp this. 

@@ -9,7 +9,7 @@ require_once "form_class.php";
 class form_member extends form_class {
     protected $id;
     protected $authority;
-    protected $member_id;
+    protected $user_id;
     protected $last_name;
     protected $other_names;
     protected $first_name;

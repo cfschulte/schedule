@@ -9,9 +9,27 @@
 -- 
 
 
--- INSERT INTO member (authority,member_id,last_name,first_name,email) VALUES (10, "stopher","Schulte","Christopher","cfschulte@humonc.wisc.edu");
--- INSERT INTO member (authority,member_id,last_name,first_name,email) VALUES (10, "nprew","Rew","Natalie","natalierew@gmail.com");
--- INSERT INTO member (authority,member_id,last_name,first_name,email) VALUES (1, "schultz","Schultz","Mathew","schultz@humonc.wisc.edu");
+-- INSERT INTO member (authority,user_id,last_name,first_name,email) VALUES (10, "stopher","Schulte","Christopher","cfschulte@humonc.wisc.edu");
+-- INSERT INTO member (authority,user_id,last_name,first_name,email) VALUES (10, "nprew","Rew","Natalie","natalierew@gmail.com");
+-- INSERT INTO member (authority,user_id,last_name,first_name,email) VALUES (1, "schultz","Schultz","Mathew","schultz@humonc.wisc.edu");
+
+DROP TABLE IF EXISTS `backup_table`;
+CREATE TABLE `backup_table` (
+  `backup_id` int(11) NOT NULL AUTO_INCREMENT,
+  `db_table` varchar(64) NOT NULL,
+  `id` int(11) DEFAULT NULL,
+  `form_type` varchar(32) DEFAULT NULL,
+  `table_column` varchar(64) DEFAULT NULL,
+  `value_varchar` varchar(256) DEFAULT NULL,
+  `value_text` text,
+  `value_int` int(11) DEFAULT NULL,
+  `value_float` float DEFAULT NULL,
+  `value_money` decimal(15,2) DEFAULT NULL,
+  `value_date` date DEFAULT NULL,
+  `time_saved` bigint(20) NOT NULL,
+  PRIMARY KEY (`backup_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
 
 -- 
 -- member - 
@@ -22,8 +40,8 @@
 DROP TABLE IF EXISTS `member`;
 CREATE TABLE `member` (
   `id`                INT NOT NULL AUTO_INCREMENT,
-  `authority`         INT DEFAULT 0,
-  `member_id`         VARCHAR(16) NOT NULL,
+  `authority`         INT DEFAULT NULL,
+  `member_id`           VARCHAR(16) NOT NULL,
   `last_name`         VARCHAR(32) DEFAULT NULL,
   `other_names`       VARCHAR(128) DEFAULT NULL,
   `first_name`        VARCHAR(32) DEFAULT NULL,

@@ -4,20 +4,23 @@
 
 .page_header{
 	padding-top: 0px;
-	padding-top: 3px;
+// 	padding-top: 3px;
 	padding-left: 2em;
-// 	padding-bottom: 6px;
+	padding-bottom: 10px;
 // 	margin-top: -15px;
 	margin-top: 0px;
 	margin-left: -4px;
+	margin-bottom: 20px;
 	width:105%;
 	height: 3em;
-	border-bottom: 10px $big_margin_color solid;
+	border-bottom: 10px solid $uw-red-dark;
+// 	border-bottom: 10px $big_margin_color;
  	vertical-align:center;
-	background-color:$header_bg_color;
+// 	background-color:$header_bg_color;
+	background-color:$main-background-color;
 	z-index: 10;
-// 	opacity: 1.0;
-	opacity: 0.3;
+	opacity: 1.0;
+// 	opacity: 0.3;
 
 // 	position: fixed;
 } 
