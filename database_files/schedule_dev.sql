@@ -8,13 +8,6 @@
 -- to interact with each other.
 -- 
 
-CREATE DATABASE schedule;
-
-CREATE USER 'schedule_admin'@'localhost' IDENTIFIED BY 'minim_d0Gcart';
-CREATE USER 'schedule_admin'@'%' IDENTIFIED BY 'minim_d0Gcart';
-
-GRANT  ALL ON schedule.*   TO 'schedule_admin'@'localhost';
-GRANT  ALL ON schedule.*   TO 'schedule_admin'@'%';
 
 -- INSERT INTO member (authority,member_id,last_name,first_name,email) VALUES (10, "stopher","Schulte","Christopher","cfschulte@humonc.wisc.edu");
 -- INSERT INTO member (authority,member_id,last_name,first_name,email) VALUES (10, "nprew","Rew","Natalie","natalierew@gmail.com");

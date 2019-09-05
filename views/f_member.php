@@ -6,7 +6,13 @@ require_once "../essentials.php";
 require_once "view_class.php";
 require_once "form_element.php";
 
-
+////////////////////////////////////////
+// EXTEND form_element
+class member_form extend form_element {
+	function makeForm() {
+		parent::makeForm();
+	}
+}
 
 
 ////////////////////////////////////////
