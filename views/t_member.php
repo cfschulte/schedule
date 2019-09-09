@@ -10,6 +10,7 @@ require_once "table_element.php";
 //////////////////////////////////////
 //  EXTEND table_element 
 class member_table extends table_element {
+    
  /*************************************************************************/  
    // table_row  
     function table_row($row) {
@@ -25,7 +26,7 @@ class member_table extends table_element {
         while ( list($key, $datum) = each($row) ) {
            if(!array_key_exists($key, $this->columns_to_show)){
                 continue;
-           } elseif($key == 'user_id'){
+           } elseif($key == 'member_id'){
                 $this->linked_cell($datum, $id);
            }else {
                 $this->table_cell($key, $datum);

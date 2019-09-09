@@ -90,6 +90,13 @@ class fe_member extends form_element {
     <label for="country" class="basic_label">Country</label>
     <input class="" type="text" name="country" id="country" value="<?php echo $this->form_data['country'] ?>"><br>
 </div>    
+<div class="grouper">  
+    <label for="comments" class="basic_label">Comments</label>
+    <textarea class="full_sized"></textarea>
+</div>
+    
+    <button class="bottom_right" id="undo_button" disabled>Undo</button>
+    <div class="clear"></div>
     </form>
     </div>
         <?php

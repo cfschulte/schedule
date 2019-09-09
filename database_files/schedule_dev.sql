@@ -8,13 +8,6 @@
 -- to interact with each other.
 -- 
 
-CREATE DATABASE schedule;
-
-CREATE USER 'schedule_admin'@'localhost' IDENTIFIED BY 'minim_d0Gcart';
-CREATE USER 'schedule_admin'@'%' IDENTIFIED BY 'minim_d0Gcart';
-
-GRANT  ALL ON schedule.*   TO 'schedule_admin'@'localhost';
-GRANT  ALL ON schedule.*   TO 'schedule_admin'@'%';
 
 -- INSERT INTO member (authority,user_id,last_name,first_name,email) VALUES (10, "stopher","Schulte","Christopher","cfschulte@humonc.wisc.edu");
 -- INSERT INTO member (authority,user_id,last_name,first_name,email) VALUES (10, "nprew","Rew","Natalie","natalierew@gmail.com");
@@ -48,7 +41,7 @@ DROP TABLE IF EXISTS `member`;
 CREATE TABLE `member` (
   `id`                INT NOT NULL AUTO_INCREMENT,
   `authority`         INT DEFAULT NULL,
-  `member_id`           VARCHAR(16) NOT NULL,
+  `member_id`         VARCHAR(16) NOT NULL,
   `last_name`         VARCHAR(32) DEFAULT NULL,
   `other_names`       VARCHAR(128) DEFAULT NULL,
   `first_name`        VARCHAR(32) DEFAULT NULL,
@@ -59,6 +52,7 @@ CREATE TABLE `member` (
   `state_provence`    VARCHAR(256) DEFAULT NULL,
   `country`           VARCHAR(256) DEFAULT NULL,
   `zipcode`           VARCHAR(16) DEFAULT NULL,
+  `comments`          TEXT DEFAULT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (authority) REFERENCES authority (`id`)
 )  ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;

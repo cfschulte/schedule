@@ -10,3 +10,10 @@
 .address input {
     width: 15em;
 }
+
+textarea.full_sized {
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    height: 6em;
+}

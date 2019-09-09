@@ -11,11 +11,26 @@ if(array_key_exists('data', $_POST)){
     $data = $_POST['data'];
 }
 
-$result = "No action taken.";
+$result = "No action taken for $id.";
 
-if($id=="key_value_update"){
-    require_once "update_db_record.php";
-    update_db_record($data);
+// if($id=="update_db_record"){
+//     require_once "update_db_record.php";
+//     $result = update_db_record($data);
+// } elseif($id="form_needs_undo"){
+//     require_once "update_db_record.php";
+//     $result = "Howdy";
+//     $result = enable_undo($data);
+// }
+
+switch($id){
+    case 'update_db_record':
+        require_once "update_db_record.php";
+        $result = update_db_record($data);
+        break;
+    case 'form_needs_undo':
+        require_once "update_db_record.php";
+        $result = enable_undo($data);
+        break;
 }
 
 

@@ -61,6 +61,12 @@ body {
   margin-left: auto;
 }
 
+.grouper {
+  margin-top: 1em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .basic_label {
   display: inline-block;
   width: 5em;
@@ -68,6 +74,13 @@ body {
 
 .address input {
   width: 15em;
+}
+
+textarea.full_sized {
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  height: 6em;
 }
 
 .a_button {
@@ -122,6 +135,15 @@ a.a_button:hover {
   background-color: #e8e4d8;
   display: block;
   text-decoration: none;
+}
+
+.bottom_right {
+  padding: 0.5em;
+  float: right;
+}
+
+.clear {
+  clear: both;
 }
 
 .page_header {

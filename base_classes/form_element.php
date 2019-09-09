@@ -11,12 +11,12 @@ require_once "../essentials.php";
 class form_element {
     protected $is_new = 0;
     protected $in_parameters;
-    protected $user_priveleges; // need this to show/hide things - get it from
+    protected $user_privileges; // need this to show/hide things - get it from
     protected $form_data;
     
     
  /*************************************************************************/   
-    function __construct($is_new, $user_priveleges, $in_parameters = []) {
+    function __construct($is_new, $user_privileges, $in_parameters = []) {
         $this->is_new = $is_new;
         $this->user_privileges = $user_privileges;
         $this->in_parameters = $in_parameters;
@@ -71,8 +71,8 @@ class form_element {
         $keyType = $keyTypeHash[$primary_key];
         $db_table = $db_obj->simpleOneParamRequest($sql, $keyType, $this->in_parameters['id']);
         $db_obj->closeDB();
-        
-        $this->form_data = $db_table[0];
+//         showArray($db_table[0]);
+        $this->form_data = $db_table['0'];
    }
 
 

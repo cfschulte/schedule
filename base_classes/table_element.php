@@ -127,13 +127,13 @@ class table_element {
         
         $this->primary_key = $db_obj->getPrimaryKey($this->table_name);
         
-        if(! $this->filtered_query){
+//         if(! $this->filtered_query){  // TODO: figure out find and specific views.
             $sql = $this->get_sql();
             $db_table = $db_obj->getTableNoParams($sql);
-        } else {
-            $variables = gen_filtered_search();
-            $db_table = $db_obj->safeSelect($variables['sql'], $variables['typestr'], $variables['params'] );
-        }
+//         } else {
+//             $variables = gen_filtered_search();
+//             $db_table = $db_obj->safeSelect($variables['sql'], $variables['typestr'], $variables['params'] );
+//         }
         $db_obj->closeDB();
         
         return $db_table;
