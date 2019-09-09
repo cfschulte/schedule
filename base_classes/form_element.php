@@ -45,7 +45,7 @@ class form_element {
     
     <?php 
         foreach($this->form_data as $col => $value){
-        echo "<lable>$col <input name='$col type='text' value='$value'></lable><br>\n";
+        	echo "<lable>$col <input name='$col type='text' value='$value'></lable><br>\n";
         }
     ?>
     
