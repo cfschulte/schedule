@@ -61,8 +61,14 @@ function update_field($indata){
 
 //////////////////////////
 function new_record($indata){
-    $indata['is_new'] = 0;
-    return $indata;
+    $db_obj = new db_class();
+    
+    $data_elements = array($indata['name'] => $indata['value']);
+    $result = $db_obj->buildAndExecuteInsert( $indata['table'], $data_elements);
+    $id = $db_obj->lastInsertedID();
+    $db_obj->closeDB();
+    
+    return array('result' => $result, 'id' => $id);
 }
 
 

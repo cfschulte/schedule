@@ -24,9 +24,9 @@ class fe_member extends form_element {
         
     ?>
     <form method="POST" class="ajax_form">
-    <input type="hidden" name="is_new" value="<?php echo $this->is_new ?>">
-    <input type="hidden" name="id" value="<?php echo $this->form_data['id'] ?>">
-    <input type="hidden" name="table" value="member">
+    <input type="hidden" id="is_new" name="is_new" value="<?php echo $this->is_new ?>">
+    <input type="hidden" id="id" name="id" value="<?php echo $this->form_data['id'] ?>">
+    <input type="hidden" id="table" name="table" value="member">
 <div class="flex_container">   
    
 <div class="flex_item">

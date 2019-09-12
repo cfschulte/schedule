@@ -21,7 +21,7 @@
 
 <div class="display">
   <h2>Available tables</h2>
-  <p><a href="views/t_member.php">Members</a></p>
+  <p><a href="views/t_member.php">Everyone</a></p>
 </div>
 
 

@@ -6,8 +6,8 @@ html {
 }
 
 body, *:before, *:after {
-  margin: inherit;
-  padding: inherit;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -83,6 +83,17 @@ textarea.full_sized {
   height: 6em;
 }
 
+/* format the to front pointers */
+a.front_page_link:link, a.front_page_link:visited, a.front_page_link:active {
+  color: #CC5F00;
+  text-decoration: none;
+}
+
+a.front_page_link:hover {
+  color: #0088CC;
+  text-decoration: none;
+}
+
 .a_button {
   font-size: 80%;
   font-weight: bolder;
@@ -146,10 +157,64 @@ a.a_button:hover {
   clear: both;
 }
 
+/********************************************************************************/
+/* Let's use pulldown-menus instead of the side column*/
+/* Dropdown Button */
+.dropbtn {
+  margin-left: 6em;
+  background-color: #3498DB;
+  color: white;
+  padding: 4px 16px;
+  font-size: 12px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #2980B9;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  margin-left: 2em;
+  position: absolute;
+  font-size: 14px;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 4px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {
+  display: block;
+}
+
 .page_header {
   padding-top: 0px;
   padding-left: 2em;
-  padding-bottom: 10px;
+  padding-bottom: 30px;
   margin-top: 0px;
   margin-left: -4px;
   margin-bottom: 20px;
@@ -165,6 +230,18 @@ a.a_button:hover {
 h1 {
   padding-left: 1em;
   margin-bottom: 0.5em;
+  padding-bottom: 0.5em;
+  display: inline-block;
+}
+
+.from_the_right {
+  display: inline-block;
+  float: right;
+  padding-right: 1.5em;
+}
+
+.in_header {
+  position: relative;
 }
 
 .default_table {

@@ -8,7 +8,7 @@ require_once "fe_member.php";
 
 ////////////////////////////////////////
 // EXTEND form_element
-class member_form extend form_element {
+class member_form extends form_element {
 	function makeForm() {
 		parent::makeForm();
 	}
@@ -67,9 +67,19 @@ class f_member extends view_class {
             $this->id = $indata['id'];
             $this->member_form = new fe_member(0, $this->user_privileges,  array('table' => 'member', 'id' => $this->id));
             
-            $this->title = "Member " . $this->member_form->get_value_by_column('first_name') . ' ' . $this->member_form->get_value_by_column('last_name');
+//             $this->title = "Member " . $this->member_form->get_value_by_column('first_name') . ' ' . $this->member_form->get_value_by_column('last_name');
+            $this->title =  $this->member_form->get_value_by_column('first_name') . ' ' . $this->member_form->get_value_by_column('last_name');
         }
     }
+
+ 
+ /*************************************************************************/  
+   // A new, empty form
+   function handle_no_input() {
+        $this->member_form = new fe_member(1, 0,  array('table' => 'member', 'id' => $this->id));
+        $this->title = "New Person";
+   }
+
 }
 
 $f_member = new f_member();

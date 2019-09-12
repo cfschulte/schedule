@@ -10,9 +10,12 @@ html {
     margin: 0;
 }
 
+
 body, *:before, *:after {
-margin: inherit;
-padding: inherit;
+margin: 0;
+padding: 0;
+// margin: inherit;
+// padding: inherit;
 }
 
 body {

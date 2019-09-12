@@ -39,7 +39,12 @@ class member_table extends table_element {
  /*************************************************************************/  
    // table_row  
     function linked_cell($datum, $id) {
-       echo '<td class="link_button"><a  href="/schedule/views/f_member?id=' . $id . '">' . $datum . '</a></td>';
+       
+       if(!empty($datum)){
+            echo '<td class="link_button"><a  href="/schedule/views/f_member?id=' . $id . '">' . $datum . '</a></td>';
+       } else {
+            echo '<td class="link_button"><a  href="/schedule/views/f_member?id=' . $id . '">' . $id . '</a></td>';
+       }
     }
 }
 
@@ -49,7 +54,7 @@ class member_table extends table_element {
 //  EXTEND view_class 
 class t_member extends view_class {
     function __construct() {
-        parent::__construct("Members");
+        parent::__construct("People");
     }
     
 
@@ -64,6 +69,17 @@ class t_member extends view_class {
     
 <?php 
     }
+
+
+ /*************************************************************************/  
+   // additionalHeaderStuff .
+   function additionalHeaderStuff() {
+   ?>
+   <div class="from_the_right">
+   <a class="a_button" href="/schedule/views/f_member.php">New Person</a>
+   </div>
+   <?php
+   }
 
  /*************************************************************************/  
    // Show the table. 

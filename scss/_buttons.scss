@@ -19,6 +19,19 @@
 
 
 
+/* format the to front pointers */
+a.front_page_link:link, a.front_page_link:visited, a.front_page_link:active{
+    color: #CC5F00;
+    text-decoration:none; 
+}
+
+a.front_page_link:hover {
+    color: #0088CC;
+    text-decoration:none; 
+}  
+
+
+
 .a_button {
    @include base_button($default-button-fontsize);
    margin-top:1.5em;

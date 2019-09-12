@@ -6,7 +6,7 @@
 	padding-top: 0px;
 // 	padding-top: 3px;
 	padding-left: 2em;
-	padding-bottom: 10px;
+	padding-bottom: 30px;
 // 	margin-top: -15px;
 	margin-top: 0px;
 	margin-left: -4px;
@@ -28,4 +28,18 @@
 h1 {
     padding-left:1em;
     margin-bottom: 0.5em;
+    padding-bottom: 0.5em;
+    display: inline-block;
+}
+
+
+// used for buttons and things in page's header
+.from_the_right {
+    display: inline-block;
+    float: right;
+    padding-right: 1.5em;
+}
+
+.in_header {
+    position: relative;
 }

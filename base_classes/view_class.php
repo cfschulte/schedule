@@ -117,8 +117,8 @@ class view_class {
     $this->additionalHeaderStuff();
 ?>
  </div>
- </div>
  <div style="clear:both;"></div>
+ </div>
  <?php 
  // we'll figure this ot 
 //     include "../menu.php"; 

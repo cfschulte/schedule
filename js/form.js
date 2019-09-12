@@ -15,7 +15,7 @@ $(document).ready(function() {
     db_data['table'] = $('form.ajax_form input[name=table]').val();
     db_data['is_new'] = $('form.ajax_form input[name=is_new]').val();
     
-    console.log(db_data);
+//     console.log(db_data);
     
     if(db_data['is_new'] == "0"){
         // do an ajax check
@@ -70,12 +70,18 @@ $(document).ready(function(){
         var db_data = {};
         
         db_data['previousAjaxDBVal'] = previousAjaxDBVal;
-        db_data['is_new'] = $(this).closest("form").find('input[name=is_new]').val();
-        db_data['table'] = $(this).closest("form").find('input[name=table]').val();
-        db_data['id']    = $(this).closest("form").find('input[name=id]').val();
+        db_data['is_new'] = $("#is_new").val();
+        db_data['table'] = $("#table").val();
+        db_data['id']    = $("#id").val();
+        
         db_data['name']  = $(this).attr('name');
         db_data['value'] = $(this).val();
         
+        // in case we need to update the title
+        var title_first_name = $("#first_name").val();
+        var title_last_name = $("#last_name").val();
+        
+//         console.log('title_first_name ' + title_first_name + "," + 'title_last_name ' + title_last_name);
         console.log(db_data);
         $.ajax({
             data: {
@@ -83,13 +89,26 @@ $(document).ready(function(){
                 data: db_data
             }
         }).done(function(json_response){
+            
             console.log(json_response);
             if(db_data['is_new'] == '1'){
-                $(this).closest("form").find('input[name=is_new]').val("0");
+                $("#is_new").val("0");
+                $("id").val(json_response.id);
             } else {
                 if (json_response.update_result == '1') {
                     $("#undo_button").prop('disabled', false); 
                 }
+            }
+            
+            // reset the titles if the names have been changed.
+            if(db_data['name'] == 'first_name' ){
+                var title = db_data['value'] + " " + title_last_name;
+                $("title").text(title);
+                $("h1").text(title);
+            }else if( db_data['name'] == 'last_name'){
+                var title =  title_first_name + " " + db_data['value'];
+                $("title").text(title);
+                $("h1").text(title);
             }
         });
 
