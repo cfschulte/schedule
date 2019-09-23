@@ -6,6 +6,7 @@
 
 // Use this for undoing changes.
 var previousAjaxDBVal;
+var previousCommentVal;
 
 ////////////////////////////////
 // CHECK THE UNDO STATUS. Enable the undo button if there changes
@@ -177,6 +178,61 @@ $(document).ready(function(){
         });
         
         event.preventDefault();
+    });
+    
+////////////////////////////////
+// Add a new comment
+    $("#new_comment").click(function(event){
+        var db_data = {};
+        db_data['member_id'] = $("#id").val();
+        db_data['posted_by'] = $("#user_id").val();
+        db_data['table_name'] = $("#table_name").val();
+        
+        $.ajax({
+            data:{
+                id: 'new_comment',
+                data: db_data
+            }
+        }).done(function(json_response){
+            // insert the new comment after the last one.
+            var last_commet = $(".comment").last();
+            console.log(last_commet);
+            $(json_response.comment).insertAfter(last_commet);
+        });
+    });
+
+////////////////////////////////
+// SAVE the state of the previous value on any element clicked.
+    $(".comment textarea").on('focusin', function(){
+        previousCommentVal = this.value;
+    });
+
+
+    
+////////////////////////////////
+// Update the comment 
+    $(".comment textarea").on('change', function(event){
+        var db_data = {};
+        db_data['member_id'] = $("#id").val();
+        db_data['posted_by'] = $("#user_id").val();
+        
+        db_data['the_text'] = this.value;;
+        db_data['is_new'] = $(this).closest("div.comment input[name=is_new]").val();
+        db_data['post_date'] = $(this).closest("div.comment h3").html();
+        db_data['previousCommentVal'] = previousCommentVal;
+        
+        
+        $.ajax({
+            data:{
+                id: 'update_comment',
+                data: db_data
+            }
+        }).done(function(json_response){
+            // insert the new comment after the last one.
+            var last_commet = $(".comment").last();
+            console.log(last_commet);
+            $(json_response.comment).insertAfter(last_commet);
+        });
     });
 });
 

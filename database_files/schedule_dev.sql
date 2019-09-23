@@ -52,7 +52,6 @@ CREATE TABLE `member` (
   `state_provence`    VARCHAR(256) DEFAULT NULL,
   `country`           VARCHAR(256) DEFAULT NULL,
   `zipcode`           VARCHAR(16) DEFAULT NULL,
-  `comments`          TEXT DEFAULT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (authority) REFERENCES authority (`id`)
 )  ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
@@ -106,7 +105,24 @@ LOAD DATA LOCAL INFILE 'authority.txt' INTO TABLE authority FIELDS TERMINATED BY
 
 
 -- 
+-- comment 
+--   notes and things about a particular member on their page.
+
+DROP TABLE IF EXISTS `comment`;
+CREATE TABLE `comment` (
+  `id`            INT NOT NULL AUTO_INCREMENT,
+  `member_id`     INT NOT NULL DEFAULT 1,
+  `post_date`     DATE DEFAULT NULL,
+  `posted_by`     VARCHAR(32) DEFAULT NULL,
+  `the_text`      TEXT DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (member_id)  REFERENCES member (`id`)
+)  ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+INSERT INTO comment (member_id, post_date, posted_by, the_text) VALUES (5, '2019-05-23', 'stophers', 'Works well with others');
+
+
+-- 
 -- Event/Appointment/occasion/engagement/commitment
 -- 
-
 

@@ -181,3 +181,23 @@ function undo_last_change($indata) {
     return array('column' => $column, 'value'  => $value,  'form_type'  => $form_type, 'undo_size' => sizeof($undo_size));
 }
 
+
+///////////////////////////////////////////////////
+// Add a comment
+function new_comment($indata){
+
+    $buffer ='<div class="comment">';
+    $date = americanDate(today());
+    $buffer .= "<h3>$date</h3>";
+    $buffer .= '<p>Posted by:' . $indata['user_id'] . '</p>';
+    $buffer .= '<input  name="posted_by" type="hidden" value="' . $indata['user_id'] . '">';
+    $buffer .= '<input  name="id" type="hidden" value="">';
+    $buffer .= '<input  name="is_new" type="hidden" value="1">';
+    $buffer .= '<input  name="member_id" type="hidden" value="' . $indata['member_id'] . '">';
+     
+    $buffer .= '<textarea name="the_text" class="full_sized"></textarea>';
+    $buffer .= '</div>';
+    
+    return array('comment' => $buffer);
+}
+

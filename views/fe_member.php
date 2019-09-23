@@ -18,12 +18,14 @@ class fe_member extends form_element {
         
         ?>
     <div id="form_wrap">
-    
+    <h2>General Info</h2> 
     <?php 
 //         showArray($this->form_data);
         
     ?>
     <form method="POST" class="ajax_form">
+    <button  id="undo_button" disabled>Undo</button>
+    <div class="clear"></div>
     <input type="hidden" id="is_new" name="is_new" value="<?php echo $this->is_new ?>">
     <input type="hidden" id="id" name="id" value="<?php echo $this->form_data['id'] ?>">
     <input type="hidden" id="table" name="table" value="member">
@@ -91,12 +93,12 @@ class fe_member extends form_element {
     <input class="" type="text" name="country" id="country" value="<?php echo $this->form_data['country'] ?>"><br>
 </div>    
 <div class="grouper">  
+<!-- 
     <label for="comments" class="basic_label">Comments</label>
     <textarea class="full_sized"></textarea>
+ -->
 </div>
     
-    <button class="bottom_right" id="undo_button" disabled>Undo</button>
-    <div class="clear"></div>
     </form>
     </div>
         <?php

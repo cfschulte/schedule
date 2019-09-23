@@ -6,14 +6,18 @@
 require_once "../essentials.php";
 require_once "view_class.php";
 require_once "fe_member.php";
+require_once "fe_comment.php";
+
+
 
 ////////////////////////////////////////
 // EXTEND form_element
-class member_form extends form_element {
+class discussion extends form_element {
 	function makeForm() {
 		parent::makeForm();
 	}
 }
+
 
 
 ////////////////////////////////////////
@@ -50,9 +54,12 @@ class f_member extends view_class {
        
    ?>
 <input type="hidden" id="table_name" value="member" >
-<div id="wrapper">  
+<input type="hidden" id="user_id" name="user_id" value="<?php echo $this->user_id; ?>" >
+<div id="wrapper"> 
+    
   <?php 
-  $this->member_form->execute() 
+  $this->member_form->execute() ;
+  $this->comment_form->execute();
   ?>
 </div>
    <?php
@@ -66,7 +73,8 @@ class f_member extends view_class {
             $this->is_new = 1;
         } else {
             $this->id = $indata['id'];
-            $this->member_form = new fe_member(0, $this->user_privileges,  array('table' => 'member', 'id' => $this->id));
+            $this->member_form  = new fe_member(0, $this->user_privileges,  array('table' => 'member', 'id' => $this->id));
+            $this->comment_form = new fe_comment(0, $this->user_privileges,  array('table' => 'comment', 'member_id' => $this->id));
             
 //             $this->title = "Member " . $this->member_form->get_value_by_column('first_name') . ' ' . $this->member_form->get_value_by_column('last_name');
             $this->title =  $this->member_form->get_value_by_column('first_name') . ' ' . $this->member_form->get_value_by_column('last_name');

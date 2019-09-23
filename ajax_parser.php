@@ -35,6 +35,10 @@ switch($id){
         require_once "update_db_record.php";
         $result = undo_last_change($data);
         break;
+    case 'new_comment':
+        require_once "update_db_record.php";
+        $result = new_comment($data);
+        break;
 }
 
 
