@@ -78,12 +78,11 @@ function backup_field($indata) {
     $db_obj = new db_class();
     
     $typeHashLong = $db_obj->columnTypeHashLong($indata['table']);
-    $backup_value = $indata['previousGenericVal'];
+    $backup_value = $indata['previousAjaxDBVal'];
     // make sure the date is in the correct format.
     if( $typeHashLong[$indata['name']]['type'] =='date' ){
         $backup_value = ensureDate( $indata['previousAjaxDBVal'] );
     }
-       
     
     $sql =   'INSERT INTO backup_table ' ;
     $sql .=  '(db_table,id,form_type,table_column,'. which_backup_field($typeHashLong[$indata['name']]['type'])  . ',time_saved) ';
@@ -94,6 +93,7 @@ function backup_field($indata) {
     
     $db_result = $db_obj->safeInsertUpdateDelete($sql, $typeList, $paramList);
     $db_obj->closeDB();
+   
    
     return $db_result;
 }
@@ -123,5 +123,61 @@ function which_backup_field( $column_type ) {
     }
     
     return 'no database';
+}
+
+///////////////////////////////////////////////////
+// UNDO
+function undo_last_change($indata) {
+    // Set the table and id for clarity 
+    $table = $indata['table'];
+    $id    = $indata['id'];
+    
+    $db_obj = new db_class() ;
+    // Get the last change to this table with this id
+    $sql = 'SELECT MAX(backup_id) FROM backup_table WHERE db_table=? AND id=? ';
+    $db_result = $db_obj->safeSelect($sql, 'si', array($table, $id));
+    $backup_id = $db_result[0]['MAX(backup_id)'];
+    
+    // Get the information from that table
+    $sql = 'SELECT * FROM backup_table WHERE backup_id=?';
+    $db_result = $db_obj->simpleOneParamRequest($sql, 'i', $backup_id);
+    
+    // This will require a type for the query 
+    $typeHashLong = $db_obj->columnTypeHashLong($db_result[0]['db_table']);
+    
+   // arrange the parameters so that they are easier to handle.
+    $column      = $db_result[0]['table_column'];
+    $form_type   = $db_result[0]['form_type'];  // RETHINK THE NEED FOR THE FORM ELEMENT TYPE
+    $value_type  = $typeHashLong[$column]['type'];
+    $typeChar    = $typeHashLong[$column]['typeChar'];
+    $value_field = which_backup_field($value_type);
+    
+    $value       = $db_result[0][$value_field];
+
+   // set the field back to what it was
+    $sql = 'UPDATE ' . $indata['table'] . ' SET ' . $column . '=? WHERE id=?';
+    $typeList = $typeChar . 'i';
+    $paramList = array($value, $indata['id']);
+    $revert_result = $db_obj->safeInsertUpdateDelete($sql, $typeList, $paramList);
+
+  // pop the undo off of the backup_table "stack" 
+    $sql = 'DELETE FROM backup_table WHERE backup_id=?';
+    $typeList = 'i';
+    $paramList = array($backup_id);
+    $pop_result = $db_obj->safeInsertUpdateDelete($sql, $typeList, $paramList);
+    
+   // should the undo button be enabled?
+    $sql = 'SELECT time_saved FROM backup_table WHERE db_table=? AND id=?';
+    $undo_size = $db_obj->safeSelect($sql, 'si', array($indata['table'], $indata['id']));
+    
+    $db_obj->closeDB();
+    
+
+    // format the date to what the users want.
+    if($value_field == 'value_date') {
+        $value = americanDate($value);
+    }
+    
+    return array('column' => $column, 'value'  => $value,  'form_type'  => $form_type, 'undo_size' => sizeof($undo_size));
 }
 

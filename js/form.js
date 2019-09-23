@@ -28,7 +28,7 @@ $(document).ready(function() {
                 data: db_data
             }
         }).done(function(json_response){
-            console.log(json_response);
+//             console.log(json_response);
             if(json_response > 0) {
                 $("#undo_button").prop('disabled', false); 
             } else {
@@ -68,6 +68,25 @@ $(document).ready(function(){
 // UPDATE the an ajax form. There might be multiple forms on a page.
     $("form.ajax_form input[type=text], form.ajax_form select").change(function(){
         var db_data = {};
+
+        if($(this).is('input[type=text]')) {
+            db_data['type'] = 'text';
+        } else if($(this).is('input[type=radio]')) {  // RADIO 
+            db_data['type'] = 'radio';
+          // WE CAN'T ACCESS THE PREVIOUS value directly so we save it in a hidden field.
+           // First, get the name of the input holding the previous value.
+           var name_prev_val_input = $(this).attr('name');
+           name_prev_val_input += '_prev';
+           // then set the data to that
+            db_data['previousGenericVal'] = $("form.ajax_form input[name=" + name_prev_val_input +"]").val();
+           // and then set the hidden variable to this current one.
+            $("form.ajax_form input[name=" + name_prev_val_input +"]").val( $(this).val() );
+        } else if($(this).is('select')) {
+            db_data['type'] = 'select';
+        } else if($(this).is('textarea')) {
+            db_data['type'] = 'textarea';
+        }
+
         
         db_data['previousAjaxDBVal'] = previousAjaxDBVal;
         db_data['is_new'] = $("#is_new").val();
@@ -82,7 +101,7 @@ $(document).ready(function(){
         var title_last_name = $("#last_name").val();
         
 //         console.log('title_first_name ' + title_first_name + "," + 'title_last_name ' + title_last_name);
-        console.log(db_data);
+//         console.log(db_data);
         $.ajax({
             data: {
                 id: 'update_db_record',
@@ -115,5 +134,49 @@ $(document).ready(function(){
     });
 
 ////////////////////////////////
+// Handle the UNDO 
+    $("#undo_button").click(function(event){
+        var db_data = {};
+        db_data['id']    = $("#id").val();
+        db_data['table'] = $("#table").val();
+        
+//         console.log(db_data);
+        $.ajax({
+            data:{
+                id: 'undo_last_change',
+                data: db_data
+            }
+        }).done(function(json_response){
+            // change the input that has been undone 
+            var input_name  = json_response['column'];
+            var input_accessor ;
+            
+           if( json_response.form_type == 'text' ){
+               console.log('hello');
+               input_accessor = 'form.ajax_form input[name=' + input_name + ']';
+               $(input_accessor).val(json_response['value']);
+           } else if( json_response.form_type == 'textarea' ){
+               input_accessor = 'form.ajax_form textarea[name=' + input_name + ']';
+              $(input_accessor).val(son_response['value']);
+             
+           } else if( json_response.form_type == 'select' ){
+               input_accessor = 'form.ajax_form select[name=' + input_name + ']';
+               $(input_accessor).val(json_response['value']); 
+           } else if( json_response.form_type == 'radio' ){
+               var radio_group = $('form.ajax_form input:radio[name=' + input_name + ']');
+               // set true for radio_group of the correct value to true. The others will
+               // be set to false by the group
+                radio_group.filter('[value='+ value +']').prop('checked', true);
+           }
+            
+           // should the undo button be enabled?
+             if(json_response.undo_size < 1) {
+                 $("#undo_button").prop('disabled', true); 
+             }   
+            
+        });
+        
+        event.preventDefault();
+    });
 });
 

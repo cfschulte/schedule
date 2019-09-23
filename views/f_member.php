@@ -1,6 +1,7 @@
 <?php
 // f_member.php -  Thu Aug 29 15:14:06 CDT 2019
-// 
+// This is the main view. It contains at least one form_element.
+//
 
 require_once "../essentials.php";
 require_once "view_class.php";

@@ -31,6 +31,10 @@ switch($id){
         require_once "update_db_record.php";
         $result = enable_undo($data);
         break;
+    case 'undo_last_change':
+        require_once "update_db_record.php";
+        $result = undo_last_change($data);
+        break;
 }
 
 

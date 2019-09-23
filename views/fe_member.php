@@ -1,7 +1,7 @@
 <?php
 // fe_member.php -  Tue Sep 3 12:51:11 CDT 2019
-//  This inherits from form_element. The member form
-// itself will contain one or more form_elements.
+//  This inherits from form_element. The member form itself will contain one 
+//  or more form_elements. 
 
 require_once "../essentials.php";
 require_once "form_element.php";
