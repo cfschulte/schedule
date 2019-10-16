@@ -74,6 +74,7 @@ class view_class {
 ?>
     <script type="text/javascript" src="/jquery/jquery.js"></script>
     <script type="text/javascript" src="/jquery/jquery-ui/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="/schedule/js/header_action.js"></script>
 <?php 
     }
  
@@ -116,13 +117,12 @@ class view_class {
 <?php 
     $this->additionalHeaderStuff();
 ?>
- </div>
  <div style="clear:both;"></div>
- </div>
  <?php 
- // we'll figure this ot 
-//     include "../menu.php"; 
+    include "menu.php"; 
  ?>
+ </div>
+ </div>
 <?php 
    }
 
