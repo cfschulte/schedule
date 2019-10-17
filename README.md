@@ -15,4 +15,6 @@ This is also a chance to get to know git. GitHub is a great chance
 to coordinate my projects across multiple platforms. Unfortunately,
 It has been a bit of a learning curve.
 
-
+So, now I'm working on a different branch and it's time to experiment
+with things like pull requests. This paragraph was written as 
+"editor_1."
