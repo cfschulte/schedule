@@ -177,7 +177,7 @@ class db_class
             
         } catch (Exception $e) {
             echo "Fail in getTableNoParams $sql: " . $e->getLine() . 
-                 ": " . $this->conn->connect_error;
+                 ": " . $this->conn->error;;
             return null;
         }
         
@@ -196,7 +196,7 @@ class db_class
             return $mysqli_result->fetch_all(MYSQLI_ASSOC) ;
         } catch (Exception $e) {
             echo "Fail in simpleOneParamRequest $sql: " . $e->getLine()  . 
-                 ": " . $this->conn->connect_error;
+                 ": " . $this->conn->error;
             return null;        
         }
     }
@@ -218,7 +218,7 @@ class db_class
             } 
           } catch (Exception $e) {
             echo "Fail in prepBindExOneParam $sql: " . $e->getLine()  . 
-                  ": " . $this->conn->connect_error .  ": " . $e->getMessage();
+                  ": " . $this->conn->error .  ": " . $e->getMessage();
             return null;        
         }
           
@@ -256,8 +256,8 @@ class db_class
             return $stmt;
             
         } catch (Exception $e) {
-            echo "Fail in prepBindExOneParam $sql<br> Line " . $e->getLine()  . 
-                  "<br> " . $this->conn->connect_error .  "<br> " . $e->getMessage() . "<br>";
+            echo "Fail in prepBindExOneParam $sql: " . $e->getLine()  . 
+                  ": " . $this->conn->error .  ": " . $e->getMessage();
             return null;        
         }
     }
@@ -286,7 +286,7 @@ class db_class
             return $result;
         } catch (Exception $e) {
             echo "Fail in safeInsertUpdateDelete $sql: " . $e->getLine() . 
-                 ": " . $this->conn->connect_error;
+                 ": " . $this->conn->error;
             return null;        
         }
        
@@ -427,7 +427,7 @@ class db_class
             return $result;
         } catch (Exception $e) {
             echo "Fail in buildAndExecuteUpdate " . $e->getLine()  . 
-                 ": " . $this->conn->connect_error;
+                 ": " . $this->conn->error;
             return null;        
         }
     }
@@ -509,7 +509,7 @@ class db_class
             return $mysqli_result->fetch_assoc();
         }catch(Exception $e) {
             echo "Fail in getLastRow: " . $e->getLine()  . 
-                 ": " . $this->conn->connect_error;
+                 ": " . $this->conn->error;
             return null;        
         }
     }
